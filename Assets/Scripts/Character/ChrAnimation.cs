@@ -10,12 +10,16 @@ public class ChrAnimation : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        animator.Play("IdleCarry");
     }
 
     
     void Update()
     {
         
+    }
+
+    public Animator GetAnimator()
+    {
+        return animator;
     }
 }

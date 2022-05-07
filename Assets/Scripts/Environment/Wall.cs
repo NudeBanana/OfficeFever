@@ -6,10 +6,16 @@ using UnityEngine;
 
 public class Wall : MonoBehaviour
 {
+   
     private void OnCollisionEnter(Collision other)
     {
-        other.transform.DOFlip();
+        other.transform.GetComponent<ChrController>().DisableMovement();
 
+    }
+
+    private void OnCollisionExit(Collision other)
+    {
+        other.transform.GetComponent<ChrController>().EnableMovement();
     }
 
 

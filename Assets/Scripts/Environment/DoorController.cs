@@ -31,6 +31,8 @@ public class DoorController : MonoBehaviour
 
         Close();
     }
+    
+    
 
 
     public void Open()

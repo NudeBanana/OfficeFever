@@ -15,11 +15,13 @@ public class ChrController : MonoBehaviour
     private float horizontal = 0f;
     private float vertical = 0f;
     private bool isRunning;
+    [SerializeField] private bool canMove;
     
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        speedMultiplier = 0.6f;
+        speedMultiplier = 0.4f;
+        canMove = true;
         isRunning = false;
     }
 
@@ -44,12 +46,27 @@ public class ChrController : MonoBehaviour
         {
             isRunning = false;
         }
-        
-        rb.AddForce(new Vector3(vertical*speedMultiplier, 0, horizontal*speedMultiplier), ForceMode.VelocityChange);
-        //rb.velocity = new Vector3(vertical*speedMultiplier, 0, horizontal*speedMultiplier);
-        
         Vector3 pos = transform.position;
+        //rb.AddForce(new Vector3(vertical*speedMultiplier, 0, horizontal*speedMultiplier), ForceMode.VelocityChange);
+        //DOTween.To(()=> transform.position, x=> transform.position = x, new Vector3(pos.x + vertical, pos.y, pos.z + horizontal), 1 / speedMultiplier);
+        transform.DOMove(new Vector3(pos.x + vertical, pos.y, pos.z + horizontal), 1/speedMultiplier);
+            
+        if (!canMove)
+        {
+            transform.DOKill();
+        }
+        
         LookForward(new Vector3(pos.x + vertical, pos.y, pos.z + horizontal));
+    }
+
+    public void EnableMovement()
+    {
+        canMove = true;
+    }
+
+    public void DisableMovement()
+    {
+        canMove = false;
     }
 
     public void LookForward(Vector3 toLook)
@@ -59,6 +76,11 @@ public class ChrController : MonoBehaviour
             transform.DOLookAt(toLook, 1f, AxisConstraint.Y);
         }
         
+    }
+
+    public void TweenKillAll()
+    {
+        DOTween.KillAll();
     }
 
     public Vector3 GetCurrentPos()

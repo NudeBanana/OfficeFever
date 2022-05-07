@@ -30,10 +30,10 @@ public class FollowCharacter : MonoBehaviour
 
     void Follow()
     {
-        dist = Vector3.Distance(transform.position, character.GetComponent<Rigidbody>().position);
+        dist = Vector3.Distance(transform.position, character.transform.position);
         maxSpeed = dist.Map(12, 16, 2, 4);
         
-        transform.position = Vector3.Lerp(transform.position,character.GetComponent<Rigidbody>().position + offset, maxSpeed );
+        transform.position = Vector3.Lerp(transform.position,character.transform.position + offset, maxSpeed*Time.deltaTime );
     }
     
     

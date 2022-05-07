@@ -44,7 +44,10 @@
      <Compile Include="Assets\Scripts\Environment\DoorController.cs" />
      <Compile Include="Assets\Joystick Pack\Scripts\Joysticks\FixedJoystick.cs" />
      <Compile Include="Assets\Scripts\Character\Character.cs" />
+     <Compile Include="Assets\Scripts\Environment\CustomCollider.cs" />
      <Compile Include="Assets\Joystick Pack\Scripts\Joysticks\VariableJoystick.cs" />
+     <Compile Include="Assets\Scripts\Interactive\PrinterDeskController.cs" />
+     <Compile Include="Assets\Scripts\Interactive\Paper.cs" />
      <Compile Include="Assets\Joystick Pack\Examples\JoystickPlayerExample.cs" />
      <Compile Include="Assets\Joystick Pack\Scripts\Joysticks\DynamicJoystick.cs" />
      <Compile Include="Assets\Joystick Pack\Scripts\Base\Joystick.cs" />

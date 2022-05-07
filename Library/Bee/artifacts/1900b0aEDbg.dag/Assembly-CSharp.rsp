@@ -333,8 +333,11 @@
 "Assets/Joystick Pack/Scripts/Joysticks/FloatingJoystick.cs"
 "Assets/Joystick Pack/Scripts/Joysticks/VariableJoystick.cs"
 "Assets/Scripts/Camera/FollowCharacter.cs"
+"Assets/Scripts/Character/Character.cs"
 "Assets/Scripts/Character/ChrAnimation.cs"
 "Assets/Scripts/Character/ChrController.cs"
+"Assets/Scripts/Environment/DoorController.cs"
+"Assets/Scripts/Environment/Wall.cs"
 "Assets/Scripts/GameManager.cs"
 "Assets/Scripts/Utility/ExtensionMethods.cs"
 -langversion:8.0

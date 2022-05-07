@@ -7,21 +7,24 @@ using UnityEngine;
 public class ChrController : MonoBehaviour
 {
     [SerializeField] public Joystick joystick;
-    
+
+    private Rigidbody rb;
     //Movement variables
-    [SerializeField] private float speed = 0f;
+    [SerializeField] private float speedMultiplier = 0f;
+    private float currentSpeed = 0f;
     private float horizontal = 0f;
     private float vertical = 0f;
-    
+    private bool isRunning;
     
     void Start()
     {
-        DOTween.SetTweensCapacity(200, 200);
-        speed = 0.6f;
+        rb = GetComponent<Rigidbody>();
+        speedMultiplier = 0.6f;
+        isRunning = false;
     }
 
     
-    void Update()
+    void LateUpdate()
     {
         Move();
     }
@@ -30,13 +33,22 @@ public class ChrController : MonoBehaviour
     {
         horizontal = -joystick.Horizontal;
         vertical = joystick.Vertical;
-        //speed = (Math.Abs(horizontal) > Math.Abs(vertical) ? Math.Abs(horizontal) : Math.Abs(vertical));
+        currentSpeed = (Math.Abs(horizontal) > Math.Abs(vertical) ? Math.Abs(horizontal) : Math.Abs(vertical));
+        
+        if (horizontal != 0 || vertical != 0)
+        {
+            isRunning = true;
+            
+        }
+        else
+        {
+            isRunning = false;
+        }
+        
+        rb.AddForce(new Vector3(vertical*speedMultiplier, 0, horizontal*speedMultiplier), ForceMode.VelocityChange);
+        //rb.velocity = new Vector3(vertical*speedMultiplier, 0, horizontal*speedMultiplier);
         
         Vector3 pos = transform.position;
-        //transform.position = Vector3.MoveTowards(pos, new Vector3(pos.x + vertical, pos.y, pos.z + horizontal), speed * Time.deltaTime);
-        //transform.DOMove(new Vector3(pos.x + vertical, pos.y, pos.z + horizontal), speed );
-        DOTween.To(()=> transform.position, x=> transform.position = x, new Vector3(pos.x + vertical, pos.y, pos.z + horizontal), 1 / speed);
-
         LookForward(new Vector3(pos.x + vertical, pos.y, pos.z + horizontal));
     }
 
@@ -57,6 +69,16 @@ public class ChrController : MonoBehaviour
     public void SetCurrentPos()
     {
         
+    }
+
+    public float GetCurrentSpeed() //To set running animation speed
+    {
+        return (currentSpeed > 0.2f ? currentSpeed : 0.2f);
+    }
+
+    public bool IsRunning()
+    {
+        return isRunning;
     }
     
 }

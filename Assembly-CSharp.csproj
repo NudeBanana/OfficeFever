@@ -61,6 +61,9 @@
      <Compile Include="Assets\Joystick Pack\Scripts\Joysticks\FloatingJoystick.cs" />
      <Compile Include="Assets\Scripts\Character\ChrAnimation.cs" />
      <Compile Include="Assets\Scripts\Environment\Misc\Cat.cs" />
+     <Compile Include="Assets\Scripts\Interactive\MoneyObject.cs" />
+     <Compile Include="Assets\Scripts\UI\UIManager.cs" />
+     <Compile Include="Assets\Scripts\Interactive\UnlockPad.cs" />
      <None Include="Assets\Ladymito\Free_cat\Animations\low_poly_cat_animation_list.txt" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

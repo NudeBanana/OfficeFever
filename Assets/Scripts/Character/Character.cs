@@ -7,6 +7,9 @@ public class Character : MonoBehaviour
     public static Character _ChrInstance;
     public static Character Instance { get { return _ChrInstance; } }
     
+    //Global variables
+    [SerializeField]  public int money;
+    
     //Character variables
     public int load;
     public bool isLoadFull;
@@ -32,6 +35,7 @@ public class Character : MonoBehaviour
         }
         
         //Assign variables
+        money = 0;
         tray = transform.GetChild(1);
         tray.gameObject.SetActive(false); 
         
@@ -102,8 +106,11 @@ public class Character : MonoBehaviour
         isCarrying = (load > 0);
         isLoadFull = (load == 8);
     }
-    
-    
+
+    public void IncreaseMoney()
+    {
+        money += 100;
+    }
 
    
 }

@@ -82,10 +82,10 @@ public class PrinterDeskController : MonoBehaviour
         
         if (Character._ChrInstance.load < 8)
         {
-            yield return new WaitForSeconds(0.8f);
+            yield return new WaitForSeconds(0.8f);// 0.8
             for (int i = 8; i > 1; i--)
             {
-                yield return new WaitForSeconds(0.8f);
+                yield return new WaitForSeconds(0.1f);// 0.8
                 if (paperSlots[i].childCount > 0 && Character._ChrInstance.load < 8 && isPlayerNearby)
                 {
                     Transform paper = paperSlots[i].GetChild(0);
@@ -93,8 +93,9 @@ public class PrinterDeskController : MonoBehaviour
                     paper.transform.DOKill();
                     StartCoroutine(paper.GetComponent<Paper>().MoveToPlayerTray());
                     StartCoroutine(MovePaperToPlayer(col));
-                    yield break;
-                    
+                    yield return new WaitForSeconds(0.1f);
+                    //yield break;
+
                 }
             }
         }

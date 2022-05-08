@@ -21,16 +21,14 @@ public class Paper : MonoBehaviour
     public IEnumerator MoveToPlayerTray()
     {
         Transform parent = transform.parent;
-        Vector2 targetPos = new Vector2(parent.position.x, parent.position.z);
-        Vector2 paperPos = new Vector2(transform.position.x, transform.position.z);
-        while (Vector2.Distance(targetPos, paperPos) > 0.01f)
-        {
-            transform.DOMove(parent.position + new Vector3(0, 0, 0), 0.3f).OnComplete(() => transform.position = parent.position);
+        
+        
+            transform.DOMove(parent.position, 0.3f).OnComplete(
+                () => transform.position = parent.position).OnComplete(
+                () => transform.DORotate(parent.rotation.eulerAngles, 0.1f).OnComplete( //0.3
+                    () => transform.rotation = parent.rotation));
             
-            yield return new WaitForSeconds(0.3f);
-            paperPos = new Vector2(transform.position.x, transform.position.z);
-            targetPos = new Vector2(parent.position.x, parent.position.z);
-        }
-        transform.DORotate(parent.rotation.eulerAngles, 0.1f);
+            yield return new WaitForSeconds(0.3f); //0.3
+            transform.position = parent.position;
     }
 }

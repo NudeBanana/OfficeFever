@@ -9,6 +9,7 @@ public class Character : MonoBehaviour
     
     //Character variables
     public int load;
+    public bool isLoadFull;
     
     //Children objects
     public Transform tray;
@@ -98,7 +99,11 @@ public class Character : MonoBehaviour
     public void UpdateLoad()
     {
         load = transform.GetChild(1).childCount;
+        isCarrying = (load > 0);
+        isLoadFull = (load == 8);
     }
+    
+    
 
    
 }

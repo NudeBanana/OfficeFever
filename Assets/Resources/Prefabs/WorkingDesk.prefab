@@ -1,5 +1,17 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &6706461829784849011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6706392671745046159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 309444e0d9b0f714e9ab5399e9b99360, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6706461828385214998
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,6 +21,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6706461828385214997}
+  - component: {fileID: 2480671236258346850}
   m_Layer: 0
   m_Name: WorkingDesk
   m_TagString: Untagged
@@ -32,18 +45,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6706461829784849011
-MonoBehaviour:
+--- !u!65 &2480671236258346850
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6706392671745046159}
+  m_GameObject: {fileID: 6706461828385214998}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 309444e0d9b0f714e9ab5399e9b99360, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  serializedVersion: 2
+  m_Size: {x: 2.6393185, y: 1.2269332, z: 2.1748853}
+  m_Center: {x: -2.167342, y: -0.11346674, z: -0.23266768}
 --- !u!1001 &6706461827857185980
 PrefabInstance:
   m_ObjectHideFlags: 0

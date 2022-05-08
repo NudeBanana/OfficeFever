@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Paper : MonoBehaviour
@@ -20,11 +21,14 @@ public class Paper : MonoBehaviour
     public IEnumerator MoveToPlayerTray()
     {
         Transform parent = transform.parent;
-        while (Vector3.Distance(transform.position, parent.position) > 0.05f)
-        {
-            yield return new WaitForSeconds(0.001f);
-            transform.DOMove(parent.position, 0.3f);
-            transform.DORotate(parent.rotation.eulerAngles, 1f);
-        }
+        
+        
+            transform.DOMove(parent.position, 0.3f).OnComplete(
+                () => transform.position = parent.position).OnComplete(
+                () => transform.DORotate(parent.rotation.eulerAngles, 0.1f).OnComplete( //0.3
+                    () => transform.rotation = parent.rotation));
+            
+            yield return new WaitForSeconds(0.3f); //0.3
+            transform.position = parent.position;
     }
 }

@@ -17,8 +17,9 @@ public class PrinterDeskController : MonoBehaviour
     [SerializeField] private GameObject paperObject;
     
 
-    private bool isTrayFull;
-    private bool isEmpty;
+    [SerializeField] private bool isTrayFull;
+    [SerializeField] private bool isEmpty;
+    [SerializeField] private bool isPlayerNearby;
     
     void Start()
     {
@@ -27,6 +28,7 @@ public class PrinterDeskController : MonoBehaviour
         paperSlots = transform.GetChild(1).gameObject.GetComponentsInChildren<Transform>();
         paperWaypoints = transform.GetChild(0).transform.GetChild(1).gameObject.GetComponentsInChildren<Transform>();
         isTrayFull = false;
+        isPlayerNearby = false;
 
         StartCoroutine(PrintPaper());
         InvokeRepeating(nameof(UpdateTrayStatus), 0.1f, 0.1f);
@@ -58,42 +60,42 @@ public class PrinterDeskController : MonoBehaviour
 
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.tag.Equals("Player"))
+        if (other.tag.Equals("Player") && !other.GetComponent<Character>().isLoadFull)
         {
-            other.GetComponent<Character>().isCarrying = true;
+            isPlayerNearby = true;
             StartCoroutine(MovePaperToPlayer(other));
         }
         
     }
 
-    /*private void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider other)
     {
-        if (other.tag.Equals("Player"))
-        {
-            StopCoroutine(MovePaperToPlayer(other));
-        }
-    }*/
+        isPlayerNearby = false;
+        StopCoroutine(MovePaperToPlayer(other));
+    }
 
 
     public IEnumerator MovePaperToPlayer(Collider col)
     {
         
-        if (Character._ChrInstance.load <= 8)
+        if (Character._ChrInstance.load < 8)
         {
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.8f);// 0.8
             for (int i = 8; i > 1; i--)
             {
-                if (paperSlots[i].childCount > 0)
+                yield return new WaitForSeconds(0.1f);// 0.8
+                if (paperSlots[i].childCount > 0 && Character._ChrInstance.load < 8 && isPlayerNearby)
                 {
                     Transform paper = paperSlots[i].GetChild(0);
                     paper.SetParent(col.transform.GetChild(1));
+                    paper.transform.DOKill();
                     StartCoroutine(paper.GetComponent<Paper>().MoveToPlayerTray());
-                    
-                    
-                    yield break;
-                    
+                    StartCoroutine(MovePaperToPlayer(col));
+                    yield return new WaitForSeconds(0.1f);
+                    //yield break;
+
                 }
             }
         }
@@ -111,7 +113,7 @@ public class PrinterDeskController : MonoBehaviour
             }
         }
         isEmpty = (paperCount == 0);
-        isTrayFull = (paperCount == 8);
+        isTrayFull = (paperCount == 32);
     }
     
 

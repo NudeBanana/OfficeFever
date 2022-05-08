@@ -338,10 +338,15 @@
 "Assets/Scripts/Character/ChrController.cs"
 "Assets/Scripts/Environment/CustomCollider.cs"
 "Assets/Scripts/Environment/DoorController.cs"
+"Assets/Scripts/Environment/Misc/Cat.cs"
 "Assets/Scripts/Environment/Wall.cs"
 "Assets/Scripts/GameManager.cs"
+"Assets/Scripts/Interactive/MoneyObject.cs"
 "Assets/Scripts/Interactive/Paper.cs"
 "Assets/Scripts/Interactive/PrinterDeskController.cs"
+"Assets/Scripts/Interactive/UnlockPad.cs"
+"Assets/Scripts/Interactive/WorkingDesk.cs"
+"Assets/Scripts/UI/UIManager.cs"
 "Assets/Scripts/Utility/ExtensionMethods.cs"
 -langversion:8.0
 
